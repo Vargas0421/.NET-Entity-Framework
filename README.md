@@ -17,6 +17,9 @@ Este proyecto fue desarrollado utilizando el marco de trabajo **ASP.NET MVC** co
 - **ASP.NET Identity (con roles)**  
 - **SQL Server**  
 - **C#**  
+- **HTML**  
+- **CSS**  
+
 
 ## Aprendizaje obtenido
 Este proyecto fortaleció mis conocimientos en:
@@ -34,18 +37,13 @@ Este proyecto fortaleció mis conocimientos en:
    cd .NET-Entity-Framework
 2. **Configurar la base de datos**
 
-Abre el archivo Web.config.
+2.1 Abre el archivo Web.config.
 
-Adapta la cadena de conexión a tu entorno de SQL Server:
+2.2 Adapta la cadena de conexión a tu entorno de SQL Server:
 
-xml
-Copiar código
-<connectionStrings>
-    <add name="Contexto" 
-         connectionString="Data Source={(TU BASE DE DATOS)}; Initial Catalog=ARSCODEX; Integrated Security=True" 
-         providerName="System.Data.SqlClient" />
-</connectionStrings>
-Asegúrate de que la base de datos ARSCODEX exista en tu servidor SQL o créala antes de ejecutar el proyecto.
+connectionString="Data Source={(TU BASE DE DATOS)}; Initial Catalog=ARSCODEX; Integrated Security=True".
+         
+2.3 Asegúrate de que la base de datos ARSCODEX exista en tu servidor SQL o créala antes de ejecutar el proyecto.
 
 3. **Habilitar registro de errores en el Visor de Eventos**
 Ejecuta en PowerShell como administrador el siguiente comando para crear un log personalizado:
