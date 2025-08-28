@@ -36,7 +36,7 @@ Configurar la base de datos
 
 Abre el archivo Web.config.
 
-Adapta la cadena de conexión a tu entorno de SQL Server:
+2. **Adapta la cadena de conexión a tu entorno de SQL Server:**
 
 xml
 Copiar código
