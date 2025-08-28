@@ -50,9 +50,9 @@ Asegúrate de que la base de datos ARSCODEX exista en tu servidor SQL o créala 
 3. **Habilitar registro de errores en el Visor de Eventos**
 Ejecuta en PowerShell como administrador el siguiente comando para crear un log personalizado:
 
-powershell
-Copiar código
-New-EventLog -LogName "ArsCodexLog" -Source "ArsCodexSource"
+
+*New-EventLog -LogName "ArsCodexLog" -Source "ArsCodexSource"*
+
 Esto permitirá almacenar los errores no controlados del sistema en el Visor de Eventos de Windows, facilitando su monitoreo y diagnóstico.
 
 4. **Agregar roles iniciales a la base de datos**
