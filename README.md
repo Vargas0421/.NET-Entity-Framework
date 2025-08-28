@@ -32,11 +32,11 @@ Este proyecto fortaleció mis conocimientos en:
    ```bash
    git clone https://github.com/TU_USUARIO/.NET-Entity-Framework.git
    cd .NET-Entity-Framework
-Configurar la base de datos
+2. **Configurar la base de datos**
 
 Abre el archivo Web.config.
 
-2. **Adapta la cadena de conexión a tu entorno de SQL Server:**
+Adapta la cadena de conexión a tu entorno de SQL Server:
 
 xml
 Copiar código
@@ -47,7 +47,7 @@ Copiar código
 </connectionStrings>
 Asegúrate de que la base de datos ARSCODEX exista en tu servidor SQL o créala antes de ejecutar el proyecto.
 
-Habilitar registro de errores en el Visor de Eventos
+3. **Habilitar registro de errores en el Visor de Eventos**
 Ejecuta en PowerShell como administrador el siguiente comando para crear un log personalizado:
 
 powershell
@@ -55,37 +55,21 @@ Copiar código
 New-EventLog -LogName "ArsCodexLog" -Source "ArsCodexSource"
 Esto permitirá almacenar los errores no controlados del sistema en el Visor de Eventos de Windows, facilitando su monitoreo y diagnóstico.
 
-Ejecutar migraciones de Entity Framework
-En la Package Manager Console de Visual Studio, corre:
-
-powershell
-Copiar código
-Update-Database
-Agregar roles iniciales a la base de datos
+4. **Agregar roles iniciales a la base de datos**
+   
 Ejecuta en tu instancia de SQL Server los siguientes comandos para registrar los roles básicos en la tabla AspNetRoles:
-
 sql
 Copiar código
 INSERT INTO dbo.AspNetRoles (Id, Name) VALUES ('1', 'Administrador');
 INSERT INTO dbo.AspNetRoles (Id, Name) VALUES ('2', 'Contador');
-Ejecutar el proyecto
+
+**Ejecutar el proyecto**
 
 Abre la solución en Visual Studio.
-
 Compila y ejecuta (F5).
 
-La aplicación estará disponible en: https://localhost:5001 (o el puerto configurado).
+**Posibles problemas comunes**
 
-Acceso inicial (si aplica)
-
-Usuario administrador por defecto: admin@admin.com
-
-Contraseña: Admin123*
-(ajusta estos datos si definiste otros en tu migración inicial o seeding).
-
-Posibles problemas comunes
-Permisos de PowerShell: si el comando New-EventLog da error, asegúrate de ejecutar PowerShell como administrador.
-
-Permisos de SQL Server: si no puedes conectarte, revisa que la autenticación de Windows esté habilitada en tu instancia de SQL Server.
-
-Migraciones fallidas: en caso de error con Update-Database, borra la base de datos y vuelve a correr las migraciones.
+1. Permisos de PowerShell: si el comando New-EventLog da error, asegúrate de ejecutar PowerShell como administrador.
+2. Permisos de SQL Server: si no puedes conectarte, revisa que la autenticación de Windows esté habilitada en tu instancia de SQL Server.
+3. Migraciones fallidas: en caso de error con Update-Database, borra la base de datos y vuelve a correr las migraciones.
