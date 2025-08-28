@@ -30,7 +30,7 @@ Este proyecto fortaleció mis conocimientos en:
 
 1. **Clonar el repositorio**  
    ```bash
-   git clone https://github.com/TU_USUARIO/.NET-Entity-Framework.git
+   git clone [https://github.com/TU_USUARIO/.NET-Entity-Framework.git](https://github.com/Vargas0421/.NET-Entity-Framework)
    cd .NET-Entity-Framework
 2. **Configurar la base de datos**
 
@@ -42,7 +42,7 @@ xml
 Copiar código
 <connectionStrings>
     <add name="Contexto" 
-         connectionString="Data Source=DESKTOP-EE261MN\SQLEXPRESS; Initial Catalog=ARSCODEX; Integrated Security=True" 
+         connectionString="Data Source={(TU BASE DE DATOS)}; Initial Catalog=ARSCODEX; Integrated Security=True" 
          providerName="System.Data.SqlClient" />
 </connectionStrings>
 Asegúrate de que la base de datos ARSCODEX exista en tu servidor SQL o créala antes de ejecutar el proyecto.
