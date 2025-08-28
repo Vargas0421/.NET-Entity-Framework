@@ -1,0 +1,118 @@
+﻿@model IEnumerable<ArsCodex.Abstracciones.ModelosParaUI.ContadoresDto>
+@{
+    ViewBag.Title = "ListarContadores";
+}
+
+<div class="container-fluid px-4 mt-4">
+    <h2 class="mb-4">Lista de Contadores</h2>
+
+    <p>
+        @Html.ActionLink("Registrar Contador", "AgregarContadores", null, new { @class = "btn btn-primary" })
+    </p>
+
+    <div class="card shadow-lg">
+        <div class="card-header bg-white">
+            <i class="fas fa-table me-1"></i>
+            Contadores registrados
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-striped table-bordered" id="datatablesContadores">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.First().IdentificacionContador)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().NombreContador)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().PrimerApellidoContador)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().SegundoApellidoContador)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().NumeroDeColegio)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().CorreoElectronico)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().TelefonoCelular)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().TelefonoSecundario)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().MetodoDeContacto)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().FechaDeRegistro)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().Estado)</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var metodos = new Dictionary<string, string>
+                                {
+                            { "1", "Llamada" },
+                            { "2", "Mensaje de texto" },
+                            { "3", "Correo electrónico" },
+                            { "4", "Whatsapp" }
+                        };
+                        string metodo = item.MetodoDeContacto.ToString();
+
+                        <tr data-id="@item.IdContador">
+                            <td>@item.IdentificacionContador</td>
+                            <td>@item.NombreContador</td>
+                            <td>@item.PrimerApellidoContador</td>
+                            <td>@item.SegundoApellidoContador</td>
+                            <td>@item.NumeroDeColegio</td>
+                            <td>@item.CorreoElectronico</td>
+                            <td>@item.TelefonoCelular</td>
+                            <td>@item.TelefonoSecundario</td>
+                            <td>@(metodos.ContainsKey(metodo) ? metodos[metodo] : "Desconocido")</td>
+                            <td>@item.FechaDeRegistro</td>
+                            <td>
+                                <span class="badge estado @(item.Estado ? "bg-success" : "bg-danger")">
+                                    @(item.Estado ? "Activo" : "Inactivo")
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                @Html.ActionLink("Editar", "EditarContadores", new { id = item.IdContador }, new { @class = "btn btn-sm btn-outline-primary me-1" })
+                                <button class="btn btn-sm btn-outline-warning toggleEstado">
+                                    @(item.Estado ? "Inactivar" : "Activar")
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"></script>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+
+            const datatablesSimple = document.getElementById('datatablesContadores');
+            if (datatablesSimple) {
+                new simpleDatatables.DataTable(datatablesSimple);
+            }
+
+            document.querySelectorAll('.toggleEstado').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const fila = this.closest('tr');
+                    const id = fila.getAttribute('data-id');
+
+                    fetch('@Url.Action("ToggleEstadoContador","Contadores")', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ id: id })
+                    })
+                    .then(r => r.json())
+                    .then(res => {
+                        if (res.ok) {
+                            // Actualizar badge y texto de botón
+                            const badge = fila.querySelector('.estado');
+                            badge.textContent = res.estadoTexto;
+                            badge.className = 'badge estado ' + (res.estadoBool ? 'bg-success' : 'bg-danger');
+
+                            this.textContent = res.estadoBool ? 'Inactivar' : 'Activar';
+                        } else {
+                            alert(res.error || 'No se pudo cambiar el estado');
+                        }
+                    })
+                    .catch(err => {
+                        alert('Error: ' + err);
+                    });
+                });
+            });
+        });
+    </script>
+}

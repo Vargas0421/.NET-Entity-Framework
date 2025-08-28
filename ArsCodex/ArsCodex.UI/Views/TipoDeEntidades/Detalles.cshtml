@@ -1,0 +1,48 @@
+﻿@model ArsCodex.Abstracciones.ModelosParaUI.TipoDeEntidadesDto
+
+@{
+    ViewBag.Title = "Detalle del Tipo de Entidad";
+}
+
+<div class="container-fluid px-4 mt-3">
+    <div class="card shadow border-0 rounded-3">
+        <div class="card-header bg-primary text-white d-flex align-items-center">
+            <i class="fas fa-tags me-2"></i>
+            <h5 class="mb-0">Detalle del Tipo de Entidad</h5>
+        </div>
+
+        <div class="card-body">
+            <p class="text-muted small mb-4">
+                <i class="fas fa-info-circle me-1"></i> Información de solo lectura
+            </p>
+
+            <dl class="row mb-0">
+                <dt class="col-sm-4 fw-semibold text-secondary">Nombre del Tipo de Entidad</dt>
+                <dd class="col-sm-8">@Model.NombreTipoEntidad</dd>
+
+                <dt class="col-sm-4 fw-semibold text-secondary">Descripción</dt>
+                <dd class="col-sm-8">@Model.Descripcion</dd>
+
+                <dt class="col-sm-4 fw-semibold text-secondary">Fecha de Registro</dt>
+                <dd class="col-sm-8">@Model.FechaDeRegistro.ToString("dd/MM/yyyy HH:mm")</dd>
+
+                <dt class="col-sm-4 fw-semibold text-secondary">Fecha de Modificación</dt>
+                <dd class="col-sm-8">@(Model.FechaDeModificacion?.ToString("dd/MM/yyyy HH:mm"))</dd>
+
+                <dt class="col-sm-4 fw-semibold text-secondary">Estado</dt>
+                <dd class="col-sm-8">
+                    <span class="badge @(Model.Estado ? "bg-success" : "bg-danger")">
+                        @(Model.Estado ? "Activo" : "Inactivo")
+                    </span>
+                </dd>
+            </dl>
+
+            <div class="mt-4 d-flex justify-content-end gap-3">
+                <a href="@Url.Action("ListarTipoDeEntidades")" class="btn btn-outline-secondary">
+                    <i class="fas fa-arrow-left"></i> Volver
+                </a>
+               
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+﻿@model ArsCodex.Abstracciones.ModelosParaUI.EntidadDto
+
+@{
+    ViewBag.Title = "Editar Entidad";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.idEntidad)
+    @Html.HiddenFor(m => m.codigoEntidad)
+    @Html.HiddenFor(m => m.fechaDeRegistro)
+    @Html.HiddenFor(m => m.fechaDeModificacion)
+    @Html.HiddenFor(m => m.estado)
+    @Html.HiddenFor(m => m.idTipoEntidad)
+
+    <div class="container-fluid px-4 mt-4">
+        <div class="card shadow-lg rounded-3">
+            <div class="card-header bg-primary text-white d-flex align-items-center">
+                <i class="fas fa-building me-2"></i>
+                <h5 class="mb-0">Editar Entidad</h5>
+            </div>
+
+            <div class="card-body">
+                
+
+                @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.nombreEntidad, new { @class = "form-label fw-bold" })
+                    @Html.TextBoxFor(m => m.nombreEntidad, new { @class = "form-control", @readonly = "readonly" })
+                    <div class="form-text">El nombre de la entidad no se puede modificar.</div>
+                    @Html.ValidationMessageFor(m => m.nombreEntidad, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.telefonoEntidad, new { @class = "form-label fw-bold" })
+                    @Html.TextBoxFor(m => m.telefonoEntidad, new { @type = "number", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.telefonoEntidad, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.correoElectronico, new { @class = "form-label fw-bold" })
+                    @Html.TextBoxFor(m => m.correoElectronico, new { @type = "email", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.correoElectronico, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(m => m.direccion, new { @class = "form-label fw-bold" })
+                    @Html.TextBoxFor(m => m.direccion, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.direccion, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="@Url.Action("ListarEntidad")" class="btn btn-outline-secondary">
+                        <i class="fas fa-arrow-left"></i> Volver
+                    </a>
+                    <button type="submit" class="btn btn-success">
+                        <i class="fas fa-save"></i> Guardar cambios
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ArsCodex.Abstracciones.ModelosParaUI.ReservaDeLiquidezDto>
+
+@{
+    ViewBag.Title = "Lista de Reservas de Liquidez";
+}
+
+<div class="container-fluid px-4 mt-4">
+    <h2 class="mb-4">Reservas de Liquidez</h2>
+
+    <p>
+        @Html.ActionLink("Registrar Reserva", "RegistrarReservaDeLiquidez", null, new { @class = "btn btn-primary" })
+    </p>
+
+    <div class="card shadow-lg">
+        <div class="card-header bg-white">
+            <i class="fas fa-wallet me-1"></i>
+            Reservas registradas
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-striped table-bordered" id="tablaReservas">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.First().NombreEntidad)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().MontoDeReserva)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().CantidadDeBeneficiarios)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().MontoDeSeguroBancario)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().Periodo)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().NombreContador)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().FechaDeRegistro)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().FechaDeModificacion)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().Estado)</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.NombreEntidad</td>
+                            <td>@item.MontoDeReserva.ToString("N2")</td>
+                            <td>@item.CantidadDeBeneficiarios</td>
+                            <td>@item.MontoDeSeguroBancario.ToString("N2")</td>
+                            <td>@item.Periodo</td>
+                            <td>@item.NombreContador</td>
+                            <td>@item.FechaDeRegistro.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>@item.FechaDeModificacion.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>
+                                @switch (item.Estado)
+                                {
+                                    case 1:
+                                        <span class="badge bg-primary">Registrado</span>
+                                        break;
+                                    case 2:
+                                        <span class="badge bg-warning text-dark">En Alerta</span>
+                                        break;
+                                    case 3:
+                                        <span class="badge bg-info text-dark">Modificado</span>
+                                        break;
+                                    default:
+                                        <span class="badge bg-secondary">Desconocido</span>
+                                        break;
+                                }
+                            </td>
+                            <td class="text-center">
+                                @Html.ActionLink("Editar", "EditarReservaDeLiquidez", new { id = item.IdReservaLiquidez }, new { @class = "btn btn-sm btn-outline-primary" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const table = document.getElementById('tablaReservas');
+            if (table) new simpleDatatables.DataTable(table);
+        });
+    </script>
+}

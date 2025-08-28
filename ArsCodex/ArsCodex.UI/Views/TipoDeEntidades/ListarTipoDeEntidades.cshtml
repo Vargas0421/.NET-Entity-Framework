@@ -1,0 +1,106 @@
+﻿@model IEnumerable<ArsCodex.Abstracciones.ModelosParaUI.TipoDeEntidadesDto>
+
+@{
+    ViewBag.Title = "Tipo de Entidades";
+}
+
+<div class="container-fluid px-4 mt-4">
+    <h2 class="mb-4">Lista de Tipo de Entidades</h2>
+
+    <p>
+        @Html.ActionLink("Registrar nuevo tipo de entidad", "RegistrarTipoDeEntidades", null, new { @class = "btn btn-primary" })
+    </p>
+
+    <div class="card shadow-lg">
+        <div class="card-header bg-white">
+            <i class="fas fa-table me-1"></i>
+            Tipos registrados
+        </div>
+        <div class="card-body table-responsive">
+            <table id="TablaCursos" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.First().NombreTipoEntidad)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().Descripcion)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().FechaDeRegistro)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().Estado)</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr data-id="@item.IdTipoEntidad">
+                            <td>@item.NombreTipoEntidad</td>
+                            <td>
+                                @{
+                                    var descripcion = item.Descripcion ?? "";
+                                    var descripcionCorta = descripcion.Length > 15 ? descripcion.Substring(0, 15) + "..." : descripcion;
+                                }
+                                @descripcionCorta
+                            </td>
+                            <td>@item.FechaDeRegistro.ToString("dd/MM/yyyy")</td>
+                            <td>
+                                <span class="badge estadoTipo @(item.Estado ? "bg-success" : "bg-danger")">
+                                    @(item.Estado ? "Activo" : "Inactivo")
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                @Html.ActionLink("Editar", "EditarTipoDeEntidades", new { id = item.IdTipoEntidad }, new { @class = "btn btn-sm btn-outline-primary me-1" })
+                                @Html.ActionLink("Detalles", "Detalles", new { id = item.IdTipoEntidad }, new { @class = "btn btn-sm btn-outline-info me-1" })
+                                @Html.ActionLink("Reglas", "ListarRegla", "Regla", new { idTipoEntidad = item.IdTipoEntidad }, new { @class = "btn btn-sm btn-outline-warning me-1" })
+
+                                <button class="btn btn-sm btn-outline-secondary toggleEstadoTipo">
+                                    @(item.Estado ? "Inactivar" : "Activar")
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script src="~/Scripts/TipoDeEntidades/ListarTipoEntidades/ScriptListarTipoEntidades.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"></script>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+
+            const tabla = document.getElementById('TablaCursos');
+            if (tabla) {
+                new simpleDatatables.DataTable(tabla);
+            }
+
+            // Evento para activar / inactivar
+            document.querySelectorAll('.toggleEstadoTipo').forEach(btn => {
+                btn.addEventListener('click', function () {
+                    const fila = this.closest('tr');
+                    const id = fila.getAttribute('data-id');
+
+                    fetch('@Url.Action("ToggleEstadoTipo","TipoDeEntidades")', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ id: id })
+                    })
+                        .then(r => r.json())
+                        .then(res => {
+                            if (res.ok) {
+                                const badge = fila.querySelector('.estadoTipo');
+                                badge.textContent = res.estadoTexto;
+                                badge.className = 'badge estadoTipo ' + (res.estadoBool ? 'bg-success' : 'bg-danger');
+                                this.textContent = res.estadoBool ? 'Inactivar' : 'Activar';
+                            } else {
+                                alert(res.error || 'Error al cambiar el estado');
+                            }
+                        });
+                });
+            });
+        });
+    </script>
+}

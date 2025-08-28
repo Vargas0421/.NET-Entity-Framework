@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{52018D9C-058F-4293-9EF0-BB6E60252236}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ArsCodex.Abstracciones</RootNamespace>
+    <AssemblyName>ArsCodex.Abstracciones</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccesoADatos\Entidad\EditarEntidad\IEditarEntidadAD.cs" />
+    <Compile Include="AccesoADatos\Entidad\ListarEntidad\IListarEntidadAD.cs" />
+    <Compile Include="AccesoADatos\Entidad\ObtenerEntidadPorId\IObtenerEntidadPorIdAD.cs" />
+    <Compile Include="AccesoADatos\Entidad\RegistrarEntidad\IRegistrarEntidadAD.cs" />
+    <Compile Include="AccesoADatos\Bitacora\AgregarBitacora\IAgregarBitacoraAD.cs" />
+    <Compile Include="AccesoADatos\Bitacora\ListarBitacora\IListarBitacoraAD.cs" />
+    <Compile Include="AccesoADatos\Contadores\AgregarContadores\IAgregarContadoresAD.cs" />
+    <Compile Include="AccesoADatos\Contadores\EditarContadores\IEditarContadoresAD.cs" />
+    <Compile Include="AccesoADatos\Contadores\EliminarContadores\IEliminarContadoresAD.cs" />
+    <Compile Include="AccesoADatos\Contadores\ListarContadores\IListarContadoresAD.cs" />
+    <Compile Include="AccesoADatos\Contadores\ObtenerContadoresPorId\IObtenerContadoresPorId.cs" />
+    <Compile Include="AccesoADatos\ModuloAlertas\EditarModuloAlertas\IEditarModuloAlertasAD.cs" />
+    <Compile Include="AccesoADatos\ModuloAlertas\ListarModuloAlertas\IListarModuloAlertasAD.cs" />
+    <Compile Include="AccesoADatos\ModuloAlertas\RegistrarModuloAlertas\IRegistrarModuloAlertasAD.cs" />
+    <Compile Include="AccesoADatos\Regla\ActivarInactivarRegla\IActivarInactivarReglaAD.cs" />
+    <Compile Include="AccesoADatos\Regla\EditarRegla\IEditarReglaAD.cs" />
+    <Compile Include="AccesoADatos\Regla\ListarRegla\IListarReglaAD.cs" />
+    <Compile Include="AccesoADatos\Regla\ObtenerReglaPorId\IObtenerReglaPorIdAD.cs" />
+    <Compile Include="AccesoADatos\Regla\QueryReglas\IQueryReglasAD.cs" />
+    <Compile Include="AccesoADatos\Regla\RegistrarRegla\IRegistrarReglaAD.cs" />
+    <Compile Include="AccesoADatos\ReservaDeLiquidez\EditarReservaDeLiquidez\IEditarReservaDeLiquidezAD.cs" />
+    <Compile Include="AccesoADatos\ReservaDeLiquidez\ListarReservaDeLiquidez\IListarReservaDeLiquidezAD.cs" />
+    <Compile Include="AccesoADatos\ReservaDeLiquidez\RegistrarReservaDeLiquidez\IRegistrarReservaDeLiquidezAD.cs" />
+    <Compile Include="AccesoADatos\TipoDeEntidades\EditarTiposDeEntidades\IEditarTipoDeEntidadesAD.cs" />
+    <Compile Include="AccesoADatos\TipoDeEntidades\ListarTipoDeEntidades\IListarTipoDeEntidadesAD.cs" />
+    <Compile Include="AccesoADatos\TipoDeEntidades\ObtenerTipoDeEntidadesPorId\IObtenerTipoDeEntidadesPorIdAD.cs" />
+    <Compile Include="AccesoADatos\TipoDeEntidades\RegistrarTipoDeEntidades\IRegistrarTipoDeEntidadesAD.cs" />
+    <Compile Include="Comunes\Fecha\IFechaLN.cs" />
+    <Compile Include="Comunes\ManejoDeErrores\IEventViewerLogger.cs" />
+    <Compile Include="LogicasDeNegocios\Entidad\EditarEntidad\IEditarEntidadLN.cs" />
+    <Compile Include="LogicasDeNegocios\Entidad\ListarEntidad\IListarEntidadLN.cs" />
+    <Compile Include="LogicasDeNegocios\Entidad\ObtenerEntidadPorId\IObtenerEntidadPorIdLN.cs" />
+    <Compile Include="LogicasDeNegocios\Entidad\RegistrarEntidad\IRegistrarEntidadLN.cs" />
+    <Compile Include="LogicasDeNegocios\Bitacora\AgregarBitacora\IAgregarBitacoraLN.cs" />
+    <Compile Include="LogicasDeNegocios\Bitacora\ListarBitacora\IListarBitacoraLN.cs" />
+    <Compile Include="LogicasDeNegocios\Contadores\AgregarContadores\IAgregarContadoresLN.cs" />
+    <Compile Include="LogicasDeNegocios\Contadores\EditarContadores\IEditarContadoresLN.cs" />
+    <Compile Include="LogicasDeNegocios\Contadores\EliminarContadores\IEliminarContadoresLN.cs" />
+    <Compile Include="LogicasDeNegocios\Contadores\ListarContadores\IListarContadoresLN.cs" />
+    <Compile Include="LogicasDeNegocios\Contadores\ObtenerContadoresPorId\IObtenerContadoresPorIdLN.cs" />
+    <Compile Include="LogicasDeNegocios\ModuloAlertas\EditarModuloAlertas\IEditarModuloAlertasLN.cs" />
+    <Compile Include="LogicasDeNegocios\ModuloAlertas\ListarModuloAlertas\IListarModuloAlertasLN.cs" />
+    <Compile Include="LogicasDeNegocios\ModuloAlertas\RegistrarModuloAlertas\IRegistrarModuloAlertasLN.cs" />
+    <Compile Include="LogicasDeNegocios\Regla\ActivarInactivarRegla\IActivarInactivarReglaLN.cs" />
+    <Compile Include="LogicasDeNegocios\Regla\EditarRegla\IEditarReglaLN.cs" />
+    <Compile Include="LogicasDeNegocios\Regla\ListarRegla\IListarReglaLN.cs" />
+    <Compile Include="LogicasDeNegocios\Regla\ObtenerReglaPorId\IObtenerReglaPorIdLN.cs" />
+    <Compile Include="LogicasDeNegocios\Regla\QueryReglas\IQueryReglasLN.cs" />
+    <Compile Include="LogicasDeNegocios\Regla\RegistrarRegla\IRegistrarReglaLN.cs" />
+    <Compile Include="LogicasDeNegocios\ReservaDeLiquidez\EditarReservaDeLiquidez\IEditarReservaDeLiquidezLN.cs" />
+    <Compile Include="LogicasDeNegocios\ReservaDeLiquidez\ListarReservaDeLiquidez\IListarReservaDeLiquidezLN.cs" />
+    <Compile Include="LogicasDeNegocios\ReservaDeLiquidez\RegistrarReservaDeLiquidez\IRegistrarReservaDeLiquidezLN.cs" />
+    <Compile Include="LogicasDeNegocios\TipoDeEntidades\EditarTiposDeEntidades\IEditarTipoDeEntidadesLN.cs" />
+    <Compile Include="LogicasDeNegocios\TipoDeEntidades\ListarTipoDeEntidades\IListarTipoDeEntidadesLN.cs" />
+    <Compile Include="LogicasDeNegocios\TipoDeEntidades\ObtenerTipoDeEntidadesPorId\IObtenerTipoDeEntidadesPorIdLN.cs" />
+    <Compile Include="LogicasDeNegocios\TipoDeEntidades\RegistrarTipoDeEntidades\IRegistrarTipoDeEntidadesLN.cs" />
+    <Compile Include="ModelosParaLN\LogType.cs" />
+    <Compile Include="ModelosParaUI\EntidadDto.cs" />
+    <Compile Include="ModelosParaUI\BitacoraDto.cs" />
+    <Compile Include="ModelosParaUI\ContadoresDto.cs" />
+    <Compile Include="ModelosParaUI\ModuloAlertasDto.cs" />
+    <Compile Include="ModelosParaUI\ReglaDto.cs" />
+    <Compile Include="ModelosParaUI\ReservaDeLiquidezDto.cs" />
+    <Compile Include="ModelosParaUI\TipoDeEntidadesDto.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

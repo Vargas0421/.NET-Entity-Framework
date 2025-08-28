@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ArsCodex.Abstracciones.ModelosParaUI.ModuloAlertasDto>
+
+@{
+    ViewBag.Title = "Lista de Alertas";
+}
+
+<div class="container-fluid px-4 mt-4">
+    <h2 class="mb-4">Alertas Registradas</h2>
+
+    <div class="card shadow-lg">
+        <div class="card-header bg-white">
+            <i class="fas fa-bell me-1"></i>
+            Alertas
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(m => m.First().NombreDeLaEntidad)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().Periodo)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().NombreDelContador)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().CantidadDeReglasIncumplidas)</th>
+                        <th>@Html.DisplayNameFor(m => m.First().Estado)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.NombreDeLaEntidad</td>
+                            <td>@item.Periodo</td>
+                            <td>@item.NombreDelContador</td>
+                            <td>@item.CantidadDeReglasIncumplidas</td>
+                            <td>
+                                <span class="badge @(item.Estado ? "bg-success" : "bg-danger")">
+                                    @(item.Estado ? "Activa" : "Inactiva")
+                                </span>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
